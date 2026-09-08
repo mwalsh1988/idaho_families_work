@@ -105,7 +105,9 @@ nav a{font-size:15px;font-weight:600;color:#3f5063}
 nav .nav-cta{background:var(--blue);color:#fff;padding:11px 18px;border-radius:4px}
 
 .hero{
-  background:var(--blue);
+  background:
+    linear-gradient(90deg, rgba(39,74,124,.94) 0%, rgba(39,74,124,.86) 32%, rgba(39,74,124,.58) 54%, rgba(39,74,124,.18) 76%, rgba(39,74,124,.08) 100%),
+    url("https://raw.githubusercontent.com/mwalsh1988/idaho_families_work/main/Modern%20Workplace%20Rendering.png") center center / cover no-repeat;
   color:#fff;
   position:relative;
   overflow:hidden;
@@ -113,20 +115,26 @@ nav .nav-cta{background:var(--blue);color:#fff;padding:11px 18px;border-radius:4
 .hero:after{
   content:"";
   position:absolute;
-  width:420px;height:420px;border-radius:50%;
-  right:-110px;top:-120px;
-  background:rgba(159,191,226,.18);
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 65%,rgba(22,44,75,.18) 100%);
+  pointer-events:none;
 }
 .hero-grid{
-  padding-top:94px;padding-bottom:88px;
-  display:grid;
-  grid-template-columns:minmax(0,1.08fr) minmax(330px,.92fr);
-  gap:68px;align-items:center;
+  min-height:650px;
+  padding-top:100px;padding-bottom:96px;
+  display:flex;
+  align-items:center;
+}
+.hero-copy{
+  position:relative;
+  z-index:2;
+  max-width:610px;
 }
 .hero .eyebrow{color:var(--gold)}
 .hero h1{color:#fff;max-width:10ch}
 .hero-copy{
-  display:flex;flex-direction:column;gap:26px;align-items:flex-start
+  display:flex;flex-direction:column;gap:26px;align-items:flex-start;
+  position:relative;z-index:2;max-width:610px
 }
 .hero-copy>p{
   font-size:20px;color:#cfdef2;max-width:36ch
@@ -136,17 +144,6 @@ nav .nav-cta{background:var(--blue);color:#fff;padding:11px 18px;border-radius:4
   font-family:"IBM Plex Mono",monospace;
   font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#d8e5f4
 }
-.hero-panel{
-  position:relative;z-index:2;
-  background:#fff;color:var(--ink);
-  border-radius:6px;padding:30px;
-  box-shadow:0 24px 60px -32px rgba(0,0,0,.45)
-}
-.hero-panel .eyebrow{color:var(--green)}
-.hero-panel h3{font-size:30px;margin-top:10px}
-.hero-panel p{color:var(--body);font-size:17px;margin-top:12px}
-.hero-panel ul{padding-left:20px;margin:18px 0 0;color:var(--body)}
-.hero-panel li{margin:8px 0}
 
 section{padding:86px 0}
 .section-head{
@@ -309,7 +306,13 @@ footer{background:var(--blue-bg);border-top:1px solid var(--line)}
 @media(max-width:620px){
   .container{padding-left:18px;padding-right:18px}
   section{padding:66px 0}
-  .hero-grid{padding-top:70px;padding-bottom:66px;grid-template-columns:1fr}
+  .hero{
+    background:
+      linear-gradient(90deg, rgba(39,74,124,.94) 0%, rgba(39,74,124,.84) 58%, rgba(39,74,124,.42) 100%),
+      url("https://raw.githubusercontent.com/mwalsh1988/idaho_families_work/main/Modern%20Workplace%20Rendering.png") 68% center / cover no-repeat;
+  }
+  .hero-grid{min-height:600px;padding-top:70px;padding-bottom:66px}
+  .hero-copy{max-width:100%}
   .cards4,.resource-cards,.form{grid-template-columns:1fr}
   .form textarea,.form button{grid-column:auto}
   .footer-grid{grid-template-columns:1fr}
@@ -340,7 +343,7 @@ footer{background:var(--blue-bg);border-top:1px solid var(--line)}
 </header>
 
 <main id="top">
-<section class="hero">
+<section class="hero" aria-label="Working parent and young child arriving at an Idaho workplace">
   <div class="container hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">Workforce stability for Idaho employers</span>
@@ -352,17 +355,6 @@ footer{background:var(--blue-bg);border-top:1px solid var(--line)}
       </div>
       <span class="powered">Powered by Idaho AEYC</span>
     </div>
-    <aside class="hero-panel">
-      <span class="eyebrow">Start with the workforce problem</span>
-      <h3>You do not need to begin with a child care benefit.</h3>
-      <p>The right starting point depends on where family responsibilities are disrupting your operation.</p>
-      <ul>
-        <li>Turnover and hard-to-fill roles</li>
-        <li>Absenteeism and late arrivals</li>
-        <li>Scheduling instability</li>
-        <li>Employees reducing hours or leaving work</li>
-      </ul>
-    </aside>
   </div>
 </section>
 
