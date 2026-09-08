@@ -17,34 +17,10 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-
           path = Path('idaho_families_work_revised.html')
           html = path.read_text(encoding='utf-8')
-
-          css_old = '.pillar-detail p{font-size:16px;color:var(--body)}'
-          css_new = '''.pillar-detail p{font-size:16px;color:var(--body)}
-.pillar-bullets{
-  margin:0;padding-left:20px;color:var(--body);font-size:16px;line-height:1.5
-}
-.pillar-bullets li+li{margin-top:7px}'''
-          if css_old not in html:
-              raise SystemExit('Pillar paragraph CSS anchor not found')
-          html = html.replace(css_old, css_new, 1)
-
-          old = '''            <span class="pillar-label">What It Looks Like</span>
-            <p>Flexible start and end times when possible.</p>
-            <p>Shift swapping with clear guidelines.</p>
-            <p>Remote or hybrid options for eligible roles.</p>
-            <p>Seasonal flexibility during school breaks or infant transitions.</p>'''
-
-          new = '''            <span class="pillar-label">What It Looks Like</span>
-            <ul class="pillar-bullets">
-              <li>Flexible start and end times when possible.</li>
-              <li>Shift swapping with clear guidelines.</li>
-              <li>Remote or hybrid options for eligible roles.</li>
-              <li>Seasonal flexibility during school breaks or infant transitions.</li>
-            </ul>'''
-
+          old = '            <span class="pillar-label">What It Looks Like</span>\n            <p>Flexible start and end times when possible.</p>\n            <p>Shift swapping with clear guidelines.</p>\n            <p>Remote or hybrid options for eligible roles.</p>\n            <p>Seasonal flexibility during school breaks or infant transitions.</p>'
+          new = '            <span class="pillar-label">What It Looks Like</span>\n            <ul>\n              <li>Flexible start and end times when possible.</li>\n              <li>Shift swapping with clear guidelines.</li>\n              <li>Remote or hybrid options for eligible roles.</li>\n              <li>Seasonal flexibility during school breaks or infant transitions.</li>\n            </ul>'
           if old not in html:
               raise SystemExit('Flexibility What It Looks Like block not found')
           html = html.replace(old, new, 1)
