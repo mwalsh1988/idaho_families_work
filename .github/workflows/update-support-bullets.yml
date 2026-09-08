@@ -17,19 +17,16 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
 
           path = Path('idaho_families_work_revised.html')
           html = path.read_text(encoding='utf-8')
 
-          old = '''            <span class="pillar-label">What It Looks Like</span>
-            <ul>
-              <li>Flexible start and end times when possible.</li>
-              <li>Shift swapping with clear guidelines.</li>
-              <li>Remote or hybrid options for eligible roles.</li>
-              <li>Seasonal flexibility during school breaks or infant transitions.</li>
-            </ul>'''
+          support_start = html.index('<div class="pillar-header"><h3>Support</h3>')
+          support_end = html.index('</article>', support_start)
+          block = html[support_start:support_end]
 
-          new = '''            <span class="pillar-label">What It Looks Like</span>
+          replacement = '''<span class="pillar-label">What It Looks Like</span>
             <ul>
               <li>Train managers to respond consistently to family-related conflicts.</li>
               <li>Give supervisors clear options for handling unexpected care disruptions.</li>
@@ -37,13 +34,12 @@ jobs:
               <li>Make sure employees can use available family-friendly policies without stigma or unnecessary friction.</li>
             </ul>'''
 
-          support_start = html.index('<div class="pillar-header"><h3>Support</h3>')
-          support_end = html.index('</article>', support_start)
-          block = html[support_start:support_end]
-          if old not in block:
-              raise SystemExit('Support What It Looks Like block not found')
-          block = block.replace(old, new, 1)
-          html = html[:support_start] + block + html[support_end:]
+          pattern = r'<span class="pillar-label">What It Looks Like</span>\s*<ul>.*?</ul>'
+          updated, count = re.subn(pattern, replacement, block, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit('Support What It Looks Like list not found')
+
+          html = html[:support_start] + updated + html[support_end:]
           path.write_text(html, encoding='utf-8')
           PY
 
