@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idaho Families Work — Revised Website Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#3c67a8;
+  --blue-dark:#274a7c;
+  --blue-soft:#9fbfe2;
+  --blue-bg:#eef2f8;
+  --green:#497f49;
+  --green-dark:#2c552b;
+  --gold:#dbb256;
+  --ink:#2b3a4e;
+  --body:#4c5a70;
+  --muted:#697687;
+  --line:#dde3ed;
+  --paper:#ffffff;
+  --wash:#f6f8fb;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Source Sans 3",Arial,sans-serif;
+  color:var(--ink);
+  background:var(--wash);
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:1220px;margin:0 auto;padding-left:24px;padding-right:24px}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--green);
+}
+h1,h2,h3{
+  font-weight:400;
+  letter-spacing:-.012em;
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+}
+h1{font-size:clamp(42px,6vw,68px);line-height:1.03}
+h2{font-size:clamp(32px,4vw,44px);line-height:1.1;color:var(--blue-dark)}
+h3{font-size:26px;line-height:1.18;color:var(--blue-dark)}
+p{margin:0;line-height:1.55}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 24px;
+  border-radius:4px;
+  font-weight:600;
+  font-size:16px;
+}
+.btn-gold{background:var(--gold);color:var(--blue-dark)}
+.btn-outline{border:1px solid rgba(255,255,255,.5);color:#fff}
+.btn-blue{background:var(--blue);color:#fff}
+header{
+  position:sticky;top:0;z-index:40;
+  background:rgba(246,248,251,.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-wrap{
+  min-height:82px;
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+.brand{
+  display:flex;align-items:center;gap:12px;min-width:max-content
+}
+.brand-mark{
+  width:42px;height:42px;border-radius:50%;
+  position:relative;background:transparent;
+}
+.brand-mark:before,.brand-mark:after{
+  content:"";position:absolute;top:8px;width:26px;height:26px;border-radius:50%
+}
+.brand-mark:before{left:2px;background:var(--gold)}
+.brand-mark:after{right:2px;background:var(--blue-soft);opacity:.95}
+.brand-copy{line-height:1}
+.brand-copy strong{
+  display:block;
+  color:var(--blue-dark);
+  font-size:19px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:400
+}
+.brand-copy span{
+  display:block;
+  margin-top:4px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)
+}
+nav{margin-left:auto;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+nav a{font-size:15px;font-weight:600;color:#3f5063}
+nav .nav-cta{background:var(--blue);color:#fff;padding:11px 18px;border-radius:4px}
+
+.hero{
+  background:var(--blue);
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  width:420px;height:420px;border-radius:50%;
+  right:-110px;top:-120px;
+  background:rgba(159,191,226,.18);
+}
+.hero-grid{
+  padding-top:94px;padding-bottom:88px;
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(330px,.92fr);
+  gap:68px;align-items:center;
+}
+.hero .eyebrow{color:var(--gold)}
+.hero h1{color:#fff;max-width:10ch}
+.hero-copy{
+  display:flex;flex-direction:column;gap:26px;align-items:flex-start
+}
+.hero-copy>p{
+  font-size:20px;color:#cfdef2;max-width:36ch
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.powered{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#d8e5f4
+}
+.hero-panel{
+  position:relative;z-index:2;
+  background:#fff;color:var(--ink);
+  border-radius:6px;padding:30px;
+  box-shadow:0 24px 60px -32px rgba(0,0,0,.45)
+}
+.hero-panel .eyebrow{color:var(--green)}
+.hero-panel h3{font-size:30px;margin-top:10px}
+.hero-panel p{color:var(--body);font-size:17px;margin-top:12px}
+.hero-panel ul{padding-left:20px;margin:18px 0 0;color:var(--body)}
+.hero-panel li{margin:8px 0}
+
+section{padding:86px 0}
+.section-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:40px;flex-wrap:wrap;margin-bottom:42px
+}
+.section-head .copy{max-width:62ch}
+.section-head h2{margin-top:12px}
+.section-head p{font-size:18px;color:var(--body);margin-top:12px;max-width:45ch}
+.text-link{
+  color:var(--blue);font-weight:600;font-size:15px;
+  border-bottom:2px solid var(--blue-soft);padding-bottom:3px
+}
+
+.roi{background:#fff;border-bottom:1px solid var(--line)}
+.roi-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)
+}
+.stat{padding:32px 0}
+.stat+.stat{padding-left:32px}
+.stat-number{
+  display:block;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(40px,4.4vw,52px);line-height:1;color:var(--blue)
+}
+.stat-label{display:block;margin-top:10px;font-size:16px;line-height:1.45;color:var(--body)}
+.source{
+  margin-top:18px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;letter-spacing:.045em;color:#8a94a4;text-transform:uppercase
+}
+
+.pillars{background:var(--blue-bg)}
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:6px;
+  padding:28px;display:flex;flex-direction:column;gap:12px
+}
+.card p{font-size:16px;color:var(--body)}
+.card-kicker{
+  margin-top:auto;padding-top:12px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--green)
+}
+
+.models{background:var(--wash)}
+.model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.model-card{
+  background:#fff;border:1px solid var(--line);border-radius:6px;padding:30px;
+  display:flex;flex-direction:column;gap:18px
+}
+.model-card.featured{border-color:var(--blue);box-shadow:0 18px 40px -28px rgba(60,103,168,.55)}
+.model-card p{color:var(--body)}
+.splitbar{height:44px;border-radius:4px;overflow:hidden;display:flex}
+.splitbar span{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.06em;text-align:center;padding:0 6px
+}
+.emp{background:var(--blue);color:#fff}
+.employee{background:var(--blue-soft);color:var(--blue-dark)}
+.partner{background:var(--gold);color:var(--blue-dark)}
+.credit{background:#618abe;color:#fff}
+.tax-note{
+  border-top:1px solid var(--line);padding-top:14px;
+  font-size:13px!important;color:var(--muted)!important
+}
+
+.services{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.services-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px}
+.service-list{display:flex;flex-direction:column}
+.service-item{padding:28px 0;border-top:1px solid var(--line)}
+.service-item:last-child{border-bottom:1px solid var(--line)}
+.service-item p{font-size:17px;color:var(--body);margin-top:8px}
+
+.proof{
+  background:var(--green-dark);color:#fff
+}
+.proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+.proof .eyebrow{color:var(--gold)}
+.proof h2{color:#fff}
+.proof p{font-size:18px;color:#cfdcc7;margin-top:14px}
+.video{
+  aspect-ratio:16/9;border-radius:6px;overflow:hidden;
+  background:repeating-linear-gradient(135deg,rgba(255,255,255,.08) 0 12px,rgba(255,255,255,0) 12px 24px),#1d3a1c;
+  display:flex;align-items:center;justify-content:center
+}
+.play{
+  width:66px;height:66px;border-radius:50%;background:var(--gold);
+  display:flex;align-items:center;justify-content:center
+}
+.play:after{
+  content:"";width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:18px solid var(--blue-dark);margin-left:4px
+}
+
+.events{background:var(--wash)}
+.event-box{background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.event-row{
+  display:grid;grid-template-columns:150px 1fr auto;
+  gap:28px;align-items:center;padding:26px 24px
+}
+.event-row+.event-row{border-top:1px solid var(--line)}
+.event-date{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;color:var(--blue);letter-spacing:.06em
+}
+.event-row h3{font-size:23px}
+.event-row p{color:var(--muted);margin-top:5px}
+.registration{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;
+  letter-spacing:.04em;color:#8a94a4;max-width:28ch
+}
+
+.resources{background:#fff;border-top:1px solid var(--line)}
+.resources-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px}
+.resource-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.resource{
+  display:flex;flex-direction:column;gap:11px;
+  padding:23px;border:1px solid var(--line);border-radius:6px;background:var(--wash)
+}
+.resource strong{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:20px;color:var(--blue-dark)}
+.resource span{font-size:15px;line-height:1.5;color:var(--muted)}
+
+.supporters{background:var(--wash);border-top:1px solid var(--line);padding:58px 0}
+.support-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.logo-row{display:flex;gap:12px;flex-wrap:wrap}
+.fake-logo{border:1px solid var(--line);background:#fff;border-radius:4px;padding:13px 18px;color:#718095;font-weight:600}
+
+.contact{background:var(--blue);color:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+.contact .eyebrow{color:var(--gold)}
+.contact h2{color:#fff}
+.contact p{font-size:18px;color:#dbe6f4;margin-top:16px;max-width:42ch}
+.form{
+  background:#fff;padding:30px;border-radius:6px;display:grid;grid-template-columns:1fr 1fr;gap:14px
+}
+.form input,.form select,.form textarea{
+  width:100%;font-family:inherit;font-size:16px;padding:13px 14px;
+  border:1px solid #d3dbe7;border-radius:4px;background:var(--wash);color:var(--ink)
+}
+.form textarea{grid-column:1/-1;min-height:92px;resize:vertical}
+.form button{grid-column:1/-1;border:0;cursor:pointer}
+
+footer{background:var(--blue-bg);border-top:1px solid var(--line)}
+.footer-grid{padding-top:54px;padding-bottom:38px;display:grid;grid-template-columns:1.3fr .8fr .8fr;gap:44px}
+.footer-copy{font-size:15px;line-height:1.55;color:var(--body);max-width:38ch;margin-top:16px}
+.footer-col{display:flex;flex-direction:column;gap:9px}
+.footer-col .eyebrow{font-size:10px}
+.footer-col a{font-size:15px;color:var(--body)}
+
+@media(max-width:950px){
+  nav a:not(.nav-cta){display:none}
+  .hero-grid,.services-grid,.proof-grid,.resources-grid,.contact-grid{grid-template-columns:1fr}
+  .cards4{grid-template-columns:repeat(2,1fr)}
+  .model-grid{grid-template-columns:1fr}
+  .roi-grid{grid-template-columns:1fr}
+  .stat+.stat{padding-left:0;border-top:1px solid var(--line)}
+  .event-row{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .container{padding-left:18px;padding-right:18px}
+  section{padding:66px 0}
+  .hero-grid{padding-top:70px;padding-bottom:66px;grid-template-columns:1fr}
+  .cards4,.resource-cards,.form{grid-template-columns:1fr}
+  .form textarea,.form button{grid-column:auto}
+  .footer-grid{grid-template-columns:1fr}
+  .brand-copy span{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav-wrap">
+    <a class="brand" href="#top">
+      <div class="brand-mark"></div>
+      <div class="brand-copy">
+        <strong>Idaho Families Work</strong>
+        <span>Workforce solutions for Idaho employers</span>
+      </div>
+    </a>
+    <nav>
+      <a href="#business">The business case</a>
+      <a href="#first-steps">Practical first steps</a>
+      <a href="#funding">Funding models</a>
+      <a href="#help">How we help</a>
+      <a href="#resources">Resources</a>
+      <a class="nav-cta" href="#contact">Find your starting point</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Workforce stability for Idaho employers</span>
+      <h1>Child care is workforce infrastructure.</h1>
+      <p>Most Idaho employers do not have a child care line item. The cost still shows up in turnover, absences and shifts you cannot cover. Idaho Families Work helps employers reduce that friction — starting with practical no-cost and low-cost changes.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#business">See the business case</a>
+        <a class="btn btn-outline" href="#contact">Find your starting point</a>
+      </div>
+      <span class="powered">Powered by Idaho AEYC</span>
+    </div>
+    <aside class="hero-panel">
+      <span class="eyebrow">Start with the workforce problem</span>
+      <h3>You do not need to begin with a child care benefit.</h3>
+      <p>The right starting point depends on where family responsibilities are disrupting your operation.</p>
+      <ul>
+        <li>Turnover and hard-to-fill roles</li>
+        <li>Absenteeism and late arrivals</li>
+        <li>Scheduling instability</li>
+        <li>Employees reducing hours or leaving work</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="roi" id="business">
+  <div class="container">
+    <div class="section-head">
+      <div class="copy">
+        <span class="eyebrow">The business case</span>
+        <h2>You are already paying for this problem.</h2>
+        <p>Most employers do not see child care on the P&amp;L. They feel it in operations.</p>
+      </div>
+      <a class="text-link" href="#resources">Read the evidence base</a>
+    </div>
+    <div class="roi-grid">
+      <div class="stat">
+        <span class="stat-number">Up to 425%</span>
+        <span class="stat-label">ROI reported in the Moms First and Boston Consulting Group study of employer child care benefits.</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">80,683</span>
+        <span class="stat-label">Idaho children under age six with working parents.</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">90%</span>
+        <span class="stat-label">Employers who report that child care benefits strengthen recruitment and retention.</span>
+      </div>
+    </div>
+    <div class="source">Sources: Moms First + BCG, The Employee Benefit That Pays for Itself · CED, The Business Case: Child Care as an Economic Driver for Idaho · U.S. Census ACS 2023</div>
+  </div>
+</section>
+
+<section class="pillars" id="first-steps">
+  <div class="container">
+    <div class="section-head">
+      <div class="copy">
+        <span class="eyebrow">Practical first steps</span>
+        <h2>Four ways to start before making a major financial investment.</h2>
+      </div>
+      <p>The goal is not to solve every family challenge. It is to remove avoidable friction that keeps people from showing up, staying and growing.</p>
+    </div>
+    <div class="cards4">
+      <article class="card">
+        <h3>Flexibility</h3>
+        <p>Let work fit real life where operations allow — flexible start times, shift swaps with clear guardrails and seasonal flexibility during school breaks or other high-need periods.</p>
+        <span class="card-kicker">30-day test · adjust one scheduling rule</span>
+      </article>
+      <article class="card">
+        <h3>Predictability</h3>
+        <p>Care arrangements depend on knowing work schedules early enough to plan. Post schedules sooner, reduce last-minute changes and keep hours consistent where possible.</p>
+        <span class="card-kicker">30-day test · post one week earlier</span>
+      </article>
+      <article class="card">
+        <h3>Supportive culture</h3>
+        <p>A supervisor’s response can determine whether a family challenge becomes a short-term disruption or a reason to leave. Give managers practical tools to problem-solve consistently.</p>
+        <span class="card-kicker">30-day test · give managers a decision tree</span>
+      </article>
+      <article class="card">
+        <h3>Resource connection</h3>
+        <p>You do not have to solve every problem yourself. Make existing child care and family supports easy for employees to find and use.</p>
+        <span class="card-kicker">30-day test · publish a family resources page</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="models" id="funding">
+  <div class="container">
+    <div class="section-head">
+      <div class="copy">
+        <span class="eyebrow">Shared funding</span>
+        <h2>You do not carry the cost alone.</h2>
+        <p>Cost-sharing models can divide child care costs between employers and employees and, in some models, public, philanthropic or community partners — making meaningful support more financially workable.</p>
+      </div>
+    </div>
+    <div class="model-grid">
+      <article class="model-card">
+        <h3>Duo-Share</h3>
+        <p>Employer and employee share the cost directly, without requiring a third funding partner. Contributions can be structured as a percentage or a defined employer amount.</p>
+        <div class="splitbar">
+          <span class="emp">EMPLOYER</span>
+          <span class="employee">EMPLOYEE</span>
+        </div>
+      </article>
+      <article class="model-card featured">
+        <h3>Tri-Share</h3>
+        <p>Employer, employee and a public, philanthropic or community partner share the cost. The contribution structure can be tailored to the program and available funding.</p>
+        <div class="splitbar">
+          <span class="emp">EMPLOYER</span>
+          <span class="employee">EMPLOYEE</span>
+          <span class="partner">PARTNER</span>
+        </div>
+      </article>
+      <article class="model-card">
+        <h3>Federal tax credit</h3>
+        <p>Enhanced from 2026: eligible employer child care expenditures may qualify for a federal tax credit, with higher credit rates available to qualifying small businesses.</p>
+        <div class="splitbar">
+          <span class="credit" style="flex:1.6">YOUR NET COST</span>
+          <span class="partner">CREDIT</span>
+        </div>
+        <p class="tax-note">Start with the workforce problem, choose the right solution, then work with a tax professional to determine whether the investment qualifies. Idaho Families Work does not provide tax advice.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="help">
+  <div class="container services-grid">
+    <div>
+      <span class="eyebrow">How we help</span>
+      <h2 style="margin-top:12px">From workforce problem to practical action.</h2>
+      <p style="font-size:18px;color:var(--body);margin-top:16px">We help Idaho employers understand their workforce needs, choose right-fit solutions, put them into practice and measure what changes. Start small. Scale smart. Finance well.</p>
+    </div>
+    <div class="service-list">
+      <div class="service-item">
+        <h3>Readiness assessment</h3>
+        <p>A structured diagnostic of your workforce, pain points, current supports and local care landscape — so you know the right place to start before making a major investment.</p>
+      </div>
+      <div class="service-item">
+        <h3>Solution design</h3>
+        <p>A 30-day action sprint, a pilot concept with cost assumptions and owners, a partner map and a measurement plan. A practical plan, not a best-practices memo.</p>
+      </div>
+      <div class="service-item">
+        <h3>Implementation, training &amp; measurement</h3>
+        <p>Pilot support, executive briefings and manager workshops to put the plan into practice, followed by measurement of retention, absenteeism, utilization and lessons learned.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="container proof-grid">
+    <div>
+      <span class="eyebrow">Watch · 4 min</span>
+      <h2 style="margin-top:12px">How employers can make the math work</h2>
+      <p>See how different employers can combine workplace practices, child care solutions, shared funding and available incentives to build a strategy that fits their workforce.</p>
+    </div>
+    <div class="video"><div class="play"></div></div>
+  </div>
+</section>
+
+<section class="events">
+  <div class="container">
+    <div class="section-head">
+      <div class="copy">
+        <span class="eyebrow">Events &amp; workshops</span>
+        <h2>Put the strategy into practice.</h2>
+      </div>
+      <div class="registration">Registration and payment are handled securely through our event partner.</div>
+    </div>
+    <div class="event-box">
+      <div class="event-row">
+        <div class="event-date">NOV 12 · BOISE</div>
+        <div>
+          <h3>Idaho Families Work Employer Summit</h3>
+          <p>Full-day conference · keynote from Child Care Aware of Missouri</p>
+        </div>
+        <a class="btn btn-blue" href="#contact">Register</a>
+      </div>
+      <div class="event-row">
+        <div class="event-date">DEC 03 · ONLINE</div>
+        <div>
+          <h3>Shared Funding 101 for HR Leaders</h3>
+          <p>60-minute webinar · budgeting, eligibility and enrollment mechanics</p>
+        </div>
+        <a class="btn btn-blue" href="#contact">Register</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="resources" id="resources">
+  <div class="container resources-grid">
+    <div>
+      <span class="eyebrow">Toolkits &amp; resources</span>
+      <h2 style="margin-top:12px">Build the internal case.</h2>
+      <p style="font-size:18px;color:var(--body);margin-top:16px">Short, sourced and practical — built for the meeting where the decision gets made.</p>
+    </div>
+    <div class="resource-cards">
+      <a class="resource" href="#">
+        <strong>The employee benefit that pays for itself</strong>
+        <span>The ROI case, with employer examples and data you can cite directly.</span>
+      </a>
+      <a class="resource" href="#">
+        <strong>Employer roadmap to child care</strong>
+        <span>A step-by-step guide from identifying the workforce problem to choosing and implementing the right solution.</span>
+      </a>
+      <a class="resource" href="#">
+        <strong>Shared funding pathways at a glance</strong>
+        <span>Duo-Share, Tri-Share and flexible cost-sharing structures in one practical overview.</span>
+      </a>
+      <a class="resource" href="#">
+        <strong>Section 45F explained for finance teams</strong>
+        <span>What may qualify, how the credit works and what to discuss with your tax professional.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="supporters">
+  <div class="container">
+    <div class="support-row">
+      <span class="eyebrow">Supported by Idaho employers</span>
+      <a class="text-link" href="#contact">Partner with Idaho Families Work →</a>
+    </div>
+    <div class="logo-row" style="margin-top:28px">
+      <span class="fake-logo">Idaho Employer</span>
+      <span class="fake-logo">Community Partner</span>
+      <span class="fake-logo">Workforce Leader</span>
+      <span class="fake-logo">Local Business</span>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div>
+      <span class="eyebrow">Start here</span>
+      <h2 style="margin-top:12px">Tell us where the problem shows up. We’ll help you find the right starting point.</h2>
+      <p>A short conversation about your workforce, schedules and biggest pain points can help identify the practices, partnerships and funding pathways worth exploring.</p>
+    </div>
+    <form class="form">
+      <input type="text" placeholder="Full name">
+      <input type="text" placeholder="Company">
+      <input type="email" placeholder="Work email">
+      <input type="text" placeholder="Approx. headcount">
+      <textarea placeholder="Where is the workforce challenge showing up?"></textarea>
+      <button type="button" class="btn btn-blue">Talk to our team</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <a class="brand" href="#top">
+        <div class="brand-mark"></div>
+        <div class="brand-copy"><strong>Idaho Families Work</strong></div>
+      </a>
+      <p class="footer-copy">Idaho Families Work helps Idaho employers build practical, family-friendly workforce solutions. Powered by Idaho AEYC.</p>
+    </div>
+    <div class="footer-col">
+      <span class="eyebrow">Explore</span>
+      <a href="#business">The business case</a>
+      <a href="#funding">Funding models</a>
+      <a href="#resources">Toolkits &amp; resources</a>
+    </div>
+    <div class="footer-col">
+      <span class="eyebrow">Contact</span>
+      <a href="mailto:hello@idahofamilieswork.org">hello@idahofamilieswork.org</a>
+      <a href="#contact">Find your starting point</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
