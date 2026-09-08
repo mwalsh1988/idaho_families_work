@@ -20,16 +20,8 @@ jobs:
           from pathlib import Path
           p = Path('idaho_families_work_revised.html')
           s = p.read_text()
-          old = '''      <p>Most Idaho employers do not have a child care line item. The cost still shows up in turnover, absences and shifts you cannot cover. Idaho Families Work helps employers reduce that friction — starting with practical no-cost and low-cost changes.</p>
-      <div class="hero-actions">
-        <a class="btn btn-gold" href="#business">See the business case</a>
-        <a class="btn btn-outline" href="#contact">Find your starting point</a>
-      </div>
-      <span class="powered">Powered by Idaho AEYC</span>'''
-          new = '''      <p>Family-friendly workplaces improve reliability, retention and performance. Enhance your workforce stability strategy today with the help of Idaho Families Work.</p>
-      <div class="hero-actions">
-        <a class="btn btn-gold" href="#first-steps">The Four Pillars</a>
-      </div>'''
+          old = '      <p>Most Idaho employers do not have a child care line item. The cost still shows up in turnover, absences and shifts you cannot cover. Idaho Families Work helps employers reduce that friction — starting with practical no-cost and low-cost changes.</p>\n      <div class="hero-actions">\n        <a class="btn btn-gold" href="#business">See the business case</a>\n        <a class="btn btn-outline" href="#contact">Find your starting point</a>\n      </div>\n      <span class="powered">Powered by Idaho AEYC</span>'
+          new = '      <p>Family-friendly workplaces improve reliability, retention and performance. Enhance your workforce stability strategy today with the help of Idaho Families Work.</p>\n      <div class="hero-actions">\n        <a class="btn btn-gold" href="#first-steps">The Four Pillars</a>\n      </div>'
           if old not in s:
               raise SystemExit('Expected hero block not found; no changes made.')
           p.write_text(s.replace(old, new, 1))
