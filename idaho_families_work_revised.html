@@ -8,6 +8,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+@font-face{
+  font-family:"Soiren";
+  src:url("./assets/fonts/Soiren.woff") format("woff");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
 :root{
   --blue:#3c67a8;
   --blue-dark:#274a7c;
@@ -44,7 +51,7 @@ h1,h2,h3{
   font-weight:400;
   letter-spacing:-.012em;
   margin:0;
-  font-family:Georgia,"Times New Roman",serif;
+  font-family:"Soiren",Georgia,"Times New Roman",serif;
 }
 h1{font-size:clamp(42px,6vw,68px);line-height:1.03}
 h2{font-size:clamp(32px,4vw,44px);line-height:1.1;color:var(--blue-dark)}
@@ -91,7 +98,7 @@ header{
   display:block;
   color:var(--blue-dark);
   font-size:19px;
-  font-family:Georgia,"Times New Roman",serif;
+  font-family:"Soiren",Georgia,"Times New Roman",serif;
   font-weight:400
 }
 .brand-copy span{
@@ -100,6 +107,11 @@ header{
   font-family:"IBM Plex Mono",monospace;
   font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)
 }
+
+.brand-logo{display:flex;align-items:center;min-width:0}
+.brand-logo img{display:block;width:172px;height:auto;max-height:62px}
+.footer-logo img{width:190px;max-height:none}
+
 nav{margin-left:auto;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
 nav a{font-size:15px;font-weight:600;color:#3f5063}
 nav .nav-cta{background:var(--blue);color:#fff;padding:11px 18px;border-radius:4px}
@@ -167,7 +179,7 @@ section{padding:86px 0}
 .stat+.stat{padding-left:32px}
 .stat-number{
   display:block;
-  font-family:Georgia,"Times New Roman",serif;
+  font-family:"Soiren",Georgia,"Times New Roman",serif;
   font-size:clamp(40px,4.4vw,52px);line-height:1;color:var(--blue)
 }
 .stat-label{display:block;margin-top:10px;font-size:16px;line-height:1.45;color:var(--body)}
@@ -264,7 +276,7 @@ section{padding:86px 0}
   display:flex;flex-direction:column;gap:11px;
   padding:23px;border:1px solid var(--line);border-radius:6px;background:var(--wash)
 }
-.resource strong{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:20px;color:var(--blue-dark)}
+.resource strong{font-family:"Soiren",Georgia,"Times New Roman",serif;font-weight:400;font-size:20px;color:var(--blue-dark)}
 .resource span{font-size:15px;line-height:1.5;color:var(--muted)}
 
 .supporters{background:var(--wash);border-top:1px solid var(--line);padding:58px 0}
@@ -317,6 +329,8 @@ footer{background:var(--blue-bg);border-top:1px solid var(--line)}
   .form textarea,.form button{grid-column:auto}
   .footer-grid{grid-template-columns:1fr}
   .brand-copy span{display:none}
+  .brand-logo img{width:150px}
+  .footer-logo img{width:175px}
 }
 </style>
 </head>
@@ -324,12 +338,8 @@ footer{background:var(--blue-bg);border-top:1px solid var(--line)}
 
 <header>
   <div class="container nav-wrap">
-    <a class="brand" href="#top">
-      <div class="brand-mark"></div>
-      <div class="brand-copy">
-        <strong>Idaho Families Work</strong>
-        <span>Workforce solutions for Idaho employers</span>
-      </div>
+    <a class="brand brand-logo" href="#top" aria-label="Idaho Families Work home">
+      <img src="./assets/logos/Blue Wordmark + Icon.svg" alt="Idaho Families Work">
     </a>
     <nav>
       <a href="#business">The business case</a>
@@ -590,9 +600,8 @@ footer{background:var(--blue-bg);border-top:1px solid var(--line)}
 <footer>
   <div class="container footer-grid">
     <div>
-      <a class="brand" href="#top">
-        <div class="brand-mark"></div>
-        <div class="brand-copy"><strong>Idaho Families Work</strong></div>
+      <a class="brand brand-logo footer-logo" href="#top" aria-label="Idaho Families Work home">
+        <img src="./assets/logos/Blue Wordmark + Icon.svg" alt="Idaho Families Work">
       </a>
       <p class="footer-copy">Idaho Families Work helps Idaho employers build practical, family-friendly workforce solutions. Powered by Idaho AEYC.</p>
     </div>
