@@ -1,0 +1,174 @@
+name: Update Four Pillars section
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update Four Pillars layout and copy
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('idaho_families_work_revised.html')
+          html = path.read_text(encoding='utf-8')
+
+          css_anchor = '''.card-kicker{
+  margin-top:auto;padding-top:12px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--green)
+}
+'''
+
+          pillar_css = '''.card-kicker{
+  margin-top:auto;padding-top:12px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--green)
+}
+
+.pillar-list{display:flex;flex-direction:column;gap:20px}
+.pillar-card{
+  background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden
+}
+.pillar-header{padding:26px 30px 20px}
+.pillar-header h3{font-size:30px}
+.pillar-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)
+}
+.pillar-detail{padding:24px 30px 28px}
+.pillar-detail+.pillar-detail{border-left:1px solid var(--line)}
+.pillar-label{
+  display:block;margin-bottom:10px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)
+}
+.pillar-detail p{font-size:16px;color:var(--body)}
+@media(max-width:850px){
+  .pillar-grid{grid-template-columns:1fr}
+  .pillar-detail+.pillar-detail{border-left:0;border-top:1px solid var(--line)}
+}
+'''
+
+          if css_anchor not in html:
+              raise SystemExit('CSS anchor not found; refusing to modify file')
+          html = html.replace(css_anchor, pillar_css, 1)
+
+          old = '''    <div class="cards4">
+      <article class="card">
+        <h3>Flexibility</h3>
+        <p>Let work fit real life where operations allow — flexible start times, shift swaps with clear guardrails and seasonal flexibility during school breaks or other high-need periods.</p>
+        <span class="card-kicker">30-day test · adjust one scheduling rule</span>
+      </article>
+      <article class="card">
+        <h3>Predictability</h3>
+        <p>Care arrangements depend on knowing work schedules early enough to plan. Post schedules sooner, reduce last-minute changes and keep hours consistent where possible.</p>
+        <span class="card-kicker">30-day test · post one week earlier</span>
+      </article>
+      <article class="card">
+        <h3>Supportive culture</h3>
+        <p>A supervisor’s response can determine whether a family challenge becomes a short-term disruption or a reason to leave. Give managers practical tools to problem-solve consistently.</p>
+        <span class="card-kicker">30-day test · give managers a decision tree</span>
+      </article>
+      <article class="card">
+        <h3>Resource connection</h3>
+        <p>You do not have to solve every problem yourself. Make existing child care and family supports easy for employees to find and use.</p>
+        <span class="card-kicker">30-day test · publish a family resources page</span>
+      </article>
+    </div>'''
+
+          new = '''    <div class="pillar-list">
+      <article class="pillar-card">
+        <div class="pillar-header"><h3>Flexibility</h3></div>
+        <div class="pillar-grid">
+          <div class="pillar-detail">
+            <span class="pillar-label">What It Is</span>
+            <p>Give employees reasonable ways to adjust when and how work gets done where operations allow.</p>
+          </div>
+          <div class="pillar-detail">
+            <span class="pillar-label">Why It Works</span>
+            <p>Family needs do not always follow a fixed schedule. Practical flexibility can keep a short-term disruption from becoming a missed shift, absence or reason to leave.</p>
+          </div>
+          <div class="pillar-detail">
+            <span class="pillar-label">How To Try It</span>
+            <p>Test one change for 30 days, such as flexible start times, easier shift swaps or limited scheduling flexibility during high-need periods.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="pillar-card">
+        <div class="pillar-header"><h3>Predictability</h3></div>
+        <div class="pillar-grid">
+          <div class="pillar-detail">
+            <span class="pillar-label">What It Is</span>
+            <p>Give employees enough advance notice and consistency in their schedules to plan child care and other family responsibilities.</p>
+          </div>
+          <div class="pillar-detail">
+            <span class="pillar-label">Why It Works</span>
+            <p>Reliable schedules make reliable care easier to arrange. Fewer last-minute changes can reduce callouts, late arrivals and scrambling for coverage.</p>
+          </div>
+          <div class="pillar-detail">
+            <span class="pillar-label">How To Try It</span>
+            <p>Post schedules earlier, limit avoidable last-minute changes or identify one team where hours can be made more consistent for 30 days.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="pillar-card">
+        <div class="pillar-header"><h3>Supportive Culture</h3></div>
+        <div class="pillar-grid">
+          <div class="pillar-detail">
+            <span class="pillar-label">What It Is</span>
+            <p>Equip managers to respond consistently and constructively when employees face family-related disruptions.</p>
+          </div>
+          <div class="pillar-detail">
+            <span class="pillar-label">Why It Works</span>
+            <p>A supervisor's response can determine whether a temporary problem gets solved quickly or becomes a source of disengagement, absenteeism or turnover.</p>
+          </div>
+          <div class="pillar-detail">
+            <span class="pillar-label">How To Try It</span>
+            <p>Give managers a simple decision tree, clear escalation options and examples of reasonable responses they can use when family needs affect work.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="pillar-card">
+        <div class="pillar-header"><h3>Resource Connection</h3></div>
+        <div class="pillar-grid">
+          <div class="pillar-detail">
+            <span class="pillar-label">What It Is</span>
+            <p>Make existing child care, family and community resources easy for employees to find and use.</p>
+          </div>
+          <div class="pillar-detail">
+            <span class="pillar-label">Why It Works</span>
+            <p>Employers do not need to build every solution themselves. Connecting employees to trusted resources can solve problems sooner with little or no direct employer cost.</p>
+          </div>
+          <div class="pillar-detail">
+            <span class="pillar-label">How To Try It</span>
+            <p>Create one easy-to-find family resources page or guide and make sure managers know where to direct employees when a need comes up.</p>
+          </div>
+        </div>
+      </article>
+    </div>'''
+
+          if old not in html:
+              raise SystemExit('Four Pillars HTML block not found; refusing to modify file')
+          html = html.replace(old, new, 1)
+          path.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit updated site and remove one-time workflow
+        run: |
+          git config user.name "mwalsh1988"
+          git config user.email "137976980+mwalsh1988@users.noreply.github.com"
+          rm .github/workflows/update-four-pillars.yml
+          git add idaho_families_work_revised.html .github/workflows/update-four-pillars.yml
+          git commit -m "Expand Four Pillars into full-width guidance panels"
+          git push
