@@ -1,0 +1,70 @@
+name: Add video placeholder image
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-video-placeholder.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add placeholder image behind play button
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('idaho_families_work_revised.html')
+          html = path.read_text(encoding='utf-8')
+
+          old = '''.video{
+  aspect-ratio:16/9;border-radius:6px;overflow:hidden;
+  background:repeating-linear-gradient(135deg,rgba(255,255,255,.08) 0 12px,rgba(255,255,255,0) 12px 24px),#1d3a1c;
+  display:flex;align-items:center;justify-content:center
+}
+.play{
+  width:66px;height:66px;border-radius:50%;background:var(--gold);
+  display:flex;align-items:center;justify-content:center
+}'''
+
+          new = '''.video{
+  position:relative;
+  aspect-ratio:16/9;border-radius:6px;overflow:hidden;
+  background:
+    linear-gradient(rgba(20,42,29,.34),rgba(20,42,29,.34)),
+    url("./Modern Workplace Rendering.png") center center / cover no-repeat;
+  display:flex;align-items:center;justify-content:center
+}
+.video:before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(39,74,124,.04) 0%,rgba(18,48,27,.30) 100%);
+  pointer-events:none
+}
+.play{
+  position:relative;z-index:2;
+  width:66px;height:66px;border-radius:50%;background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 12px 30px rgba(0,0,0,.28)
+}'''
+
+          if old not in html:
+              raise SystemExit('Current video CSS block not found')
+
+          html = html.replace(old, new, 1)
+          path.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit page update and remove workflow
+        run: |
+          git config user.name "mwalsh1988"
+          git config user.email "137976980+mwalsh1988@users.noreply.github.com"
+          rm .github/workflows/add-video-placeholder.yml
+          git add idaho_families_work_revised.html .github/workflows/add-video-placeholder.yml
+          git commit -m "Add image placeholder to video section"
+          git push
