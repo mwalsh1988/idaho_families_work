@@ -3,8 +3,6 @@ name: Refine Idaho impact design
 on:
   push:
     branches: [main]
-    paths:
-      - '.github/workflows/refine-idaho-impact.yml'
 
 permissions:
   contents: write
