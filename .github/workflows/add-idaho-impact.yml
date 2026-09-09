@@ -17,68 +17,15 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-
           path = Path('idaho_families_work_revised.html')
           html = path.read_text(encoding='utf-8')
-
-          css_anchor = '''.powered{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#d8e5f4
-}
-
-section{padding:86px 0}'''
-
-          css_replacement = '''.powered{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#d8e5f4
-}
-
-.impact-strip{
-  background:var(--blue-bg);border-bottom:1px solid var(--line);padding:50px 0
-}
-.impact-strip-grid{
-  display:grid;grid-template-columns:minmax(260px,.65fr) 1.35fr;gap:52px;align-items:center
-}
-.impact-number{
-  font-family:"Soiren",Georgia,"Times New Roman",serif;
-  font-size:clamp(74px,10vw,122px);line-height:.86;letter-spacing:-.04em;color:var(--blue)
-}
-.impact-copy{
-  font-size:clamp(22px,2.3vw,30px);line-height:1.25;color:var(--blue-dark);max-width:27ch
-}
-.impact-source{
-  display:block;margin-top:12px;font-family:"IBM Plex Mono",monospace;
-  font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)
-}
-@media(max-width:700px){
-  .impact-strip{padding:42px 0}
-  .impact-strip-grid{grid-template-columns:1fr;gap:20px}
-}
-
-section{padding:86px 0}'''
-
+          css_anchor = '.powered{\n  font-family:"IBM Plex Mono",monospace;\n  font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#d8e5f4\n}\n\nsection{padding:86px 0}'
+          css_replacement = '.powered{\n  font-family:"IBM Plex Mono",monospace;\n  font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#d8e5f4\n}\n\n.impact-strip{\n  background:var(--blue-bg);border-bottom:1px solid var(--line);padding:50px 0\n}\n.impact-strip-grid{\n  display:grid;grid-template-columns:minmax(260px,.65fr) 1.35fr;gap:52px;align-items:center\n}\n.impact-number{\n  font-family:"Soiren",Georgia,"Times New Roman",serif;\n  font-size:clamp(74px,10vw,122px);line-height:.86;letter-spacing:-.04em;color:var(--blue)\n}\n.impact-copy{\n  font-size:clamp(22px,2.3vw,30px);line-height:1.25;color:var(--blue-dark);max-width:27ch\n}\n.impact-source{\n  display:block;margin-top:12px;font-family:"IBM Plex Mono",monospace;\n  font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)\n}\n@media(max-width:700px){\n  .impact-strip{padding:42px 0}\n  .impact-strip-grid{grid-template-columns:1fr;gap:20px}\n}\n\nsection{padding:86px 0}'
           if css_anchor not in html:
               raise SystemExit('CSS anchor not found')
           html = html.replace(css_anchor, css_replacement, 1)
-
-          html_anchor = '''</section>
-
-<section class="roi" id="business">'''
-
-          html_replacement = '''</section>
-
-<section class="impact-strip" aria-label="Idaho economic impact of child care challenges">
-  <div class="container impact-strip-grid">
-    <div class="impact-number">$688M</div>
-    <div>
-      <p class="impact-copy">Lost from Idaho's economy each year because families cannot access reliable child care.</p>
-      <span class="impact-source">ReadyNation · 2026</span>
-    </div>
-  </div>
-</section>
-
-<section class="roi" id="business">'''
-
+          html_anchor = '</section>\n\n<section class="roi" id="business">'
+          html_replacement = '</section>\n\n<section class="impact-strip" aria-label="Idaho economic impact of child care challenges">\n  <div class="container impact-strip-grid">\n    <div class="impact-number">$688M</div>\n    <div>\n      <p class="impact-copy">Lost from Idaho\'s economy each year because families cannot access reliable child care.</p>\n      <span class="impact-source">ReadyNation · 2026</span>\n    </div>\n  </div>\n</section>\n\n<section class="roi" id="business">'
           if html_anchor not in html:
               raise SystemExit('Hero-to-ROI anchor not found')
           html = html.replace(html_anchor, html_replacement, 1)
