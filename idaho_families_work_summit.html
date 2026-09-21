@@ -334,13 +334,17 @@ section{padding:86px 0}
 
 .resources{background:#fff;border-top:1px solid var(--line)}
 .resources-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px}
-.resource-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.resource-cards{display:grid;grid-template-columns:1fr;gap:16px}
 .resource{
   display:flex;flex-direction:column;gap:11px;
   padding:23px;border:1px solid var(--line);border-radius:6px;background:var(--wash)
 }
 .resource strong{font-family:"Soiren",Georgia,"Times New Roman",serif;font-weight:400;font-size:20px;color:var(--blue-dark)}
 .resource span{font-size:15px;line-height:1.5;color:var(--muted)}
+.resource-feature{padding:38px;align-items:flex-start}
+.resource-feature strong{font-size:30px}
+.resource-feature span{font-size:18px;max-width:44ch}
+.resource-feature .btn{margin-top:8px}
 
 .supporters{background:var(--wash);border-top:1px solid var(--line);padding:58px 0}
 .support-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
@@ -688,22 +692,11 @@ footer{background:var(--blue-bg);border-top:1px solid var(--line)}
       <p style="font-size:18px;color:var(--body);margin-top:16px">Practical resources to help organizations move from discussion to action.</p>
     </div>
     <div class="resource-cards">
-      <a class="resource" href="#">
-        <strong>The employee benefit that pays for itself</strong>
-        <span>The ROI case, with employer examples and data you can cite directly.</span>
-      </a>
-      <a class="resource" href="#">
-        <strong>Employer roadmap to child care</strong>
-        <span>A step-by-step guide from identifying the workforce problem to choosing and implementing the right solution.</span>
-      </a>
-      <a class="resource" href="#">
-        <strong>Shared funding pathways at a glance</strong>
-        <span>Duo-Share, Tri-Share and flexible cost-sharing structures in one practical overview.</span>
-      </a>
-      <a class="resource" href="#">
-        <strong>Section 45F explained for finance teams</strong>
-        <span>What may qualify, how the credit works and what to discuss with your tax professional.</span>
-      </a>
+      <div class="resource resource-feature">
+        <strong>Resources Coming Soon</strong>
+        <span>Attend the Idaho Families Work Employer Summit to be the first to receive the toolkit.</span>
+        <a class="btn btn-blue" href="#contact">Register for the Summit</a>
+      </div>
     </div>
   </div>
 </section>
